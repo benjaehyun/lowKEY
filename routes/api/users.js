@@ -9,5 +9,6 @@ router.get('/check-token', ensureLoggedIn, usersCtrl.checkToken)
 // POST /api/users
 router.post ('/', usersCtrl.create)
 router.post ('/login', usersCtrl.login)
+router.post ('/add-spotify-token', usersCtrl.addSpotifyToken)
 
 module.exports = router

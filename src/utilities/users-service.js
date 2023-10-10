@@ -15,6 +15,8 @@ export async function login(credentials) {
 
 export function logOut() {
     localStorage.removeItem('token') 
+    localStorage.removeItem('access_token') 
+    localStorage.removeItem('code_verifier') 
 }
 
 export function getToken() {
