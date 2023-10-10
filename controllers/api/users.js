@@ -5,7 +5,8 @@ const bcrypt = require('bcrypt')
 module.exports = {
     create, 
     login, 
-    checkToken
+    checkToken, 
+    addSpotifyToken
 }
 
 async function create (req, res) {
@@ -30,6 +31,20 @@ async function login (req, res) {
     } catch (err) {
         console.log(err)
         res.status(400).json('Bad Credentials')
+    }
+}
+
+async function addSpotifyToken (req, res) {
+    try {
+        console.log(`req.body: ${JSON.stringify(req.body)}`)
+        // const user = await User.findById(req.user._id) 
+        const accessToken = req.body.accessToken
+        console.log(` accessToken: ${accessToken}`)
+        const user = await User.findOneAndUpdate({'_id': req.user._id}, {'spotifyToken': accessToken})
+        res.json('')
+    } catch (err) {
+        console.log(err)
+        res.status(400).json(err)
     }
 }
 
