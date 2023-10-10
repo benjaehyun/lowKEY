@@ -6,7 +6,7 @@ export default function CallbackPage({user}) {
 
     useEffect(
         function () {
-            
+            console.log(user.spotifyToken)
             async function getSpotProfile() {
                 const spotifyProfile = await spotifyService.getProfile(user.spotifyToken) 
                 setSpotProfile(spotifyProfile)

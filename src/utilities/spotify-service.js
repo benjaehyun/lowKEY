@@ -3,10 +3,10 @@ import * as usersAPI from "./users-api"
 
 // const dotenv = require('dotenv')
 const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID // variable holding client id
+const params = new URLSearchParams(window.location.search);
+const code = params.get("code");
 
 export async function login() {
-    const params = new URLSearchParams(window.location.search);
-    const code = params.get("code");
     console.log(`code: ${code}`)
     if (!code) {
         spotifyAPI.redirectToAuthCodeFlow(clientId)

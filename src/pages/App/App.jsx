@@ -20,7 +20,7 @@ export default function App() {
           <NavBar user={user} setUser={setUser} />
           <Routes>
             <Route path="/" element={ <Homepage user={user}/> } />
-            <Route path="/callback" element={ <CallbackPage user={user} /> } />
+            {/* <Route path="/callback" element={ <CallbackPage user={user} /> } /> */}
             <Route path="/get-access-token" element={ <GetTokenPage user={user} /> } />
             {/* <Route path="/callback" element={ <Homepage user={user} /> } />  */}
             <Route path="/orders" element={ <OrderHistoryPage /> } />

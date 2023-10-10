@@ -5,6 +5,7 @@ export default function ProfileInfoPage({user}) {
     const [spotProfile, setSpotProfile] = useState({})
 
     useEffect(function () {
+        console.log(user.spotifyToken)
         async function getSpotProfile() {
             const spotifyProfile = await spotifyService.getProfile(user.spotifyToken) 
             setSpotProfile(spotifyProfile)
