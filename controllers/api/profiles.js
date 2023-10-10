@@ -12,8 +12,8 @@ async function create (req, res) {
         console.log('req.body:', req.body)
 
         req.body.user = req.user._id
-        req.body.spotifyToken=req.body.accessToken
         req.body.name = req.user.name
+        req.body.spotifyToken=req.body.accessToken
         console.log(`profile req.body: ${JSON.stringify(req.body)}`)
         const profile = await Profile.create(req.body)
         res.json(profile)

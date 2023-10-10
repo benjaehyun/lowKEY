@@ -9,18 +9,36 @@ const profileSchema = new Schema ({
         required: true
     },
     name: {type: String, required: true},
-    spotifyToken: {
+    spotify: [spotifySchema]
+    // spotifyToken: {
+    //     type: String,
+    //     default: null,    
+    // }, 
+    // spotifyRefresh: {
+    //     type: String,
+    //     default: null,   
+    // }, 
+    // spotifyId: {
+    //     type: String,
+    //     default: null,       
+    // }, 
+}, {
+    timestamps: true
+})
+
+const spotifySchema = new Schema ({
+    token: {
         type: String,
         default: null,    
     }, 
-    spotifyRefresh: {
+    refresh: {
         type: String,
         default: null,   
     }, 
-    spotifyId: {
+    userId: {
         type: String,
         default: null,       
-    }, 
+    }
 }, {
     timestamps: true
 })
