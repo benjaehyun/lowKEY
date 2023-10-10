@@ -6,9 +6,13 @@ import AuthPage from "../AuthPage/AuthPage";
 import NewOrderPage from "../NewOrderPage/NewOrderPage";
 import OrderHistoryPage from "../OrderHistoryPage/OrderHistoryPage";
 import NavBar from "../../components/NavBar/NavBar";
+import Homepage from "../Homepage/Homepage"
+import { useEffect } from 'react'
+import * as spotifyService from './utils/spotifyService'
 
 export default function App() {
   const [user, setUser] = useState(getUser()) //the initial value for the state is the return from the getUser function
+
 
   return (
     <main className="App">
@@ -16,6 +20,7 @@ export default function App() {
         <>
           <NavBar user={user} setUser={setUser} />
           <Routes>
+            <Route path="/" element={ <Homepage user={user} /> } />
             <Route path="/orders/new" element={ <NewOrderPage /> } />
             <Route path="/orders" element={ <OrderHistoryPage /> } />
           </Routes>
@@ -26,4 +31,3 @@ export default function App() {
     </main>
   );
 }
-
