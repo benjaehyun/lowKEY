@@ -5,46 +5,37 @@ import { getUser } from "../../utilities/users-service"
 import * as profilesAPI from '../../utilities/profiles-api'
 
 
-export default function SpotifyLoginPage({user, setUser, setProfile}) {
-    const [loginTrigger, setLoginTrigger] = useState([])
+export default function SpotifyLoginPage({ setProfile, profile}) {
+  const[loginTrigger, setLoginTrigger] = useState(false)
 
-    // useEffect(function () {
-    //     async function spotifyLogin() {
-    //         const spotifyProfile = await spotifyService.login() 
-    //         // setProfile(spotifyProfile)
-    //         // need to append the spotify info to the user object 
-    //     }
-    //     spotifyLogin()
-    // }, [loginTrigger])
-    // const navigate = useNavigate()
-
-    useEffect(
-        function() {
-        async function requestUserAuth() {
-          await spotifyService.requestUserAuth()
-        }
-        async function requestAccessToken() {
-          try {
-            await spotifyService.requestAccessToken()
-          } catch(err) {
-            console.log(err)
+  useEffect(
+      function() {
+        // if (loginTrigger) {
+          async function requestUserAuth() {
+            await spotifyService.requestUserAuth()
           }
-        }
-        if(!window.location.search && !user.spotifyToken) {
-          requestUserAuth()
-        } else if(!spotifyService.getAccessToken()) {
-          requestAccessToken()
-        }
-        console.log(`getProfile: ${JSON.stringify(profilesAPI.getProfile())}`)
-        // setUser(getUser())
-        async function getApiProfile () {
-          const apiProfile = await profilesAPI.getProfile()
-          setProfile(apiProfile)
-        }
-        getApiProfile()
-        
-     
+          async function requestAccessToken() {
+            try {
+              const profile = await spotifyService.requestAccessToken()
+              console.log(`spotify login profile: ${profile}`)
+              setProfile(profile)
+            } catch(err) {
+              console.log(err)
+            }
+          }
+         
+          // if(!window.location.search && !profile?.spotifyToken) {
+          if(!window.location.search) {
+            requestUserAuth()
+          } else if(!spotifyService.getAccessToken()) {
+            requestAccessToken()
+          }          
+        // }
+      
       }, [])
+      // }, [loginTrigger])
+
+      // window.history.pushState({}, null, '/')
       
    
 
@@ -55,7 +46,9 @@ export default function SpotifyLoginPage({user, setUser, setProfile}) {
     return (
         <>
             <h1> Welcome to the the newest Dating app on the block </h1>
+            <p>In order to use lowKEY you must be logged into your Spotify Account</p>
             <Link to={'/'} > Go To Homepage </Link>
+            {/* <button onClick={() => setLoginTrigger(true)}>Log In To Spotify</button> */}
             
 
         </>

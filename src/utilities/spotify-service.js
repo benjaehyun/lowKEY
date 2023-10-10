@@ -63,30 +63,21 @@ export async function requestAccessToken() {
     code_verifier: codeVerifier
   });
 
-  console.log(body)
-  console.log(`cliendId: ${clientId}`)
-
-  fetch('https://accounts.spotify.com/api/token', {
+  const res = await fetch('https://accounts.spotify.com/api/token', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded'
     },
     body: body
-  }).then(response => {
-    console.log(response)
-    if (!response.ok) {
-      throw new Error('HTTP status ' + response.status);
-    }
-    return response.json();
-  }).then(data => {
-    localStorage.setItem('access_token', data.access_token);
-    console.log(`data.access_token: ${data.access_token}`)
-    // usersAPI.addAccessToken(data.access_token) 
-    profilesAPI.createProfile(data.access_token) 
-    console.log('Success!')
-  }).catch(error => {
-    console.error('Error:', error);
-  });
+  })
+  if (!res.ok) {
+    throw new Error ('HTTP status' + res.status)
+  }
+  const data = await res.json()
+  console.log('data' , data)
+  localStorage.setItem('access_token', data.access_token)
+  const profile = await profilesAPI.createProfile(data.access_token)
+  return profile
 }
 
 export function getAccessToken() {
