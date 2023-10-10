@@ -41,7 +41,7 @@ async function addSpotifyToken (req, res) {
         const accessToken = req.body.accessToken
         console.log(` accessToken: ${accessToken}`)
         const user = await User.findOneAndUpdate({'_id': req.user._id}, {'spotifyToken': accessToken})
-        res.json(user)
+        res.json('')
     } catch (err) {
         console.log(err)
         res.status(400).json(err)

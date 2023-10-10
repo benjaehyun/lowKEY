@@ -1,13 +1,14 @@
 import {useState, useEffect} from 'react'
 import * as spotifyService from "../../utilities/spotify-service"
 
-export default function ProfileInfoPage({user}) {
+
+export default function ProfileInfoPage({profile}) {
     const [spotProfile, setSpotProfile] = useState({})
 
     useEffect(function () {
-        console.log(user.spotifyToken)
+        console.log(profile.spotifyToken)
         async function getSpotProfile() {
-            const spotifyProfile = await spotifyService.getProfile(user.spotifyToken) 
+            const spotifyProfile = await spotifyService.getProfile(profile.spotifyToken) 
             setSpotProfile(spotifyProfile)
             // need to append the spotify info to the user object 
         }
