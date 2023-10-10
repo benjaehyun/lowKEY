@@ -4,7 +4,7 @@ import { getUser } from "../../utilities/users-service";
 import * as profilesAPI from "../../utilities/profiles-api";
 import './App.css';
 import AuthPage from "../AuthPage/AuthPage";
-import HomePage from "../HomePage/HomePage";
+import HomePage from "../HomePage/Homepage"
 import NavBar from "../../components/NavBar/NavBar";
 import SpotifyLoginPage from "../SpotifyLoginPage/SpotifyLoginPage";
 
