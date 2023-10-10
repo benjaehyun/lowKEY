@@ -1,3 +1,4 @@
+
 export async function redirectToAuthCodeFlow(clientId) {
     const verifier = generateCodeVerifier(128);
     const challenge = await generateCodeChallenge(verifier);
@@ -60,4 +61,5 @@ export async function fetchProfile(token) {
     });
 
     return await result.json();
+
 }
