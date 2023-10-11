@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react"
-import { useNavigate, Link } from "react-router-dom"
+import { useEffect } from "react"
+import { Link } from "react-router-dom"
 import * as spotifyService from "../../utilities/spotify-service"
 
 export default function SpotifyLoginPage({ setProfile, profile}) {
