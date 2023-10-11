@@ -10,9 +10,9 @@ export default function HomePage({}) {
     useEffect(function () {
         async function getApiProfile() {
             const apiProfile = await profileAPI.getProfile()
-            console.log(`useEffect before profile ${JSON.stringify(profile)}`)
-            setProfile(JSON.stringify(apiProfile))
-            console.log(`useEffect profile ${profile}`)
+            console.log(`useEffect before profile`, apiProfile)
+            setProfile({...apiProfile})
+            console.log(`useEffect profile`, profile)
         }
         getApiProfile()
     }, [])

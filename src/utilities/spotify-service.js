@@ -66,8 +66,8 @@ export function getAccessToken() {
   return localStorage.getItem('access_token') || null
 }
 
-export async function requestUserTopSongs() {
-  const access_token = getAccessToken()
+export async function requestUserTopSongs(access_token) {
+  // const access_token = getAccessToken()
   console.log(`top songs request access token: ${access_token}`)
   const result = await fetch("https://api.spotify.com/v1/me/top/tracks", {
         method: "GET", headers: { 'Authorization': `Bearer ${access_token}` }

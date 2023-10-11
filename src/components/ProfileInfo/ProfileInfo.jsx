@@ -13,7 +13,7 @@ export default function ProfileInfo({profile}) {
         }
         getSpotProfile()
     },[])
-
+    
     return (
         <>
             <h1> profile info </h1>

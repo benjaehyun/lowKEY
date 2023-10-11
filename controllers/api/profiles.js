@@ -28,7 +28,7 @@ async function details (req, res) {
     try {
         console.log(`req.user._id: ${req.user._id}`)
         const profile = await Profile.findOne({user: req.user._id})
-        console.log(`profile: ${profile}`)
+        console.log(`profile:`, profile)
         res.json(profile)
     } catch (err) {
         console.log(err)
