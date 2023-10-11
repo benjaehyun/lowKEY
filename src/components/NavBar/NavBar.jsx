@@ -11,7 +11,7 @@ export default function NavBar({user, setUser}) {
         <nav>
             <Link to="/">Home</Link>
             &nbsp; | &nbsp;
-            <Link to="/orders/new">New Order</Link>
+            <Link to="/top">My Top Songs</Link>
             &nbsp;  &nbsp;
             <br />
             <span> Welcome, {user.name} </span> 

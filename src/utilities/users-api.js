@@ -1,5 +1,4 @@
 import sendRequest from './send-request';
-import {sendStringRequest} from './send-request';
 const BASE_URL = '/api/users';
 
 // Refactored code below

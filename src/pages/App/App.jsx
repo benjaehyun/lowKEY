@@ -1,12 +1,11 @@
-import {useEffect, useState} from "react"
+import { useState } from "react"
 import { Routes, Route, Navigate } from "react-router-dom"
 import { getUser } from "../../utilities/users-service";
-import * as profilesAPI from "../../utilities/profiles-api";
 import './App.css';
 import AuthPage from "../AuthPage/AuthPage";
-import HomePage from "../HomePage/HomePage";
+import HomePage from "../HomePage/Homepage";
+import TopSongs from "../TopSongs/TopSongs";
 import NavBar from "../../components/NavBar/NavBar";
-import SpotifyLoginPage from "../SpotifyLoginPage/SpotifyLoginPage";
 
 
 export default function App() {
@@ -18,6 +17,7 @@ export default function App() {
           <NavBar user={user} setUser={setUser} />
             <Routes>
               <Route path="/" element={ <HomePage /> } />
+              {/* <Route path="/top" element={ <TopSongs /> } /> */}
               <Route path='/*' element={<Navigate to='/' />} />
             </Routes>
         </>

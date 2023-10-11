@@ -1,5 +1,4 @@
 import * as spotifyAPI from "./spotify-api"
-import * as usersAPI from "./users-api"
 import * as profilesAPI from "./profiles-api"
 
 export async function getProfile(accessToken) {
@@ -16,7 +15,7 @@ let codeVerifier = generateRandomString(128);
 export async function requestUserAuth() {
   const codeChallenge = await generateCodeChallenge(codeVerifier);
   let state = generateRandomString(16);
-  let scope = 'user-read-private user-read-email';
+  let scope = 'user-read-private user-read-email user-top-read';
 
   localStorage.setItem('code_verifier', codeVerifier);
 
@@ -59,13 +58,24 @@ export async function requestAccessToken() {
   const data = await res.json()
   console.log('data' , data)
   localStorage.setItem('access_token', data.access_token)
-  const profile = await profilesAPI.createProfile(data.access_token, data.refresh_token, data.)
+  const profile = await profilesAPI.createProfile(data.access_token)
   return profile
 }
 
 export function getAccessToken() {
   return localStorage.getItem('access_token') || null
 }
+
+export async function requestUserTopSongs() {
+  const access_token = getAccessToken()
+  console.log(`top songs request access token: ${access_token}`)
+  const result = await fetch("https://api.spotify.com/v1/me/top/tracks", {
+        method: "GET", headers: { 'Authorization': `Bearer ${access_token}` }
+    });
+
+  return await result.json();
+}
+
 
 // Helper functions
 function generateRandomString(length) {

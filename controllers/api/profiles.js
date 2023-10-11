@@ -15,7 +15,8 @@ async function create (req, res) {
         req.body.name = req.user.name
         req.body.spotifyToken=req.body.accessToken
         console.log(`profile req.body: ${JSON.stringify(req.body)}`)
-        const profile = await Profile.create(req.body)
+        // const profile = await Profile.create(req.body)
+        const profile = await Profile.findOneAndUpdate({user: req.user._id}, req.body, {new: true, upsert: true})
         res.json(profile)
     } catch (err) {
         console.log(err)
