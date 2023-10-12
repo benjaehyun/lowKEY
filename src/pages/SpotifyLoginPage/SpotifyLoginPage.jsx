@@ -1,9 +1,10 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
 import { Link } from "react-router-dom"
 import * as spotifyService from "../../utilities/spotify-service"
 
 export default function SpotifyLoginPage({ setProfile, profile}) {
-
+  const navigate = useNavigate()
   useEffect(
       function() {
           async function requestUserAuth() {
@@ -18,19 +19,21 @@ export default function SpotifyLoginPage({ setProfile, profile}) {
               console.log(err)
             }
           }
-          if(!window.location.search) {
+          if(!window.location.search && !spotifyService.getAccessToken()) {
             requestUserAuth()
           } else if(!spotifyService.getAccessToken()) {
             requestAccessToken()
-          }          
-      }, [])
+          } 
+        }, [])
+        
 
 
     return (
-        <>
-            <h1> Welcome to the the newest Dating app on the block </h1>
-            <p>In order to use lowKEY you must be logged into your Spotify Account</p>
-            <Link to={'/'} > Go To Homepage </Link>
-        </>
+      <>
+        <h1>Spotify Account Connected!</h1>
+        <Link to="/profile/create">
+          <button> Continue To Create A Profile </button>
+        </Link>
+      </>
     )
 }

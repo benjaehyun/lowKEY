@@ -8,14 +8,14 @@ export async function getProfile(accessToken) {
 
 const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID
 
-const redirectUri = 'http://localhost:3000/';
+const redirectUri = 'http://localhost:3000/spotifylogin';
 let codeVerifier = generateRandomString(128);
 
 // Service Functions
 export async function requestUserAuth() {
   const codeChallenge = await generateCodeChallenge(codeVerifier);
   let state = generateRandomString(16);
-  let scope = 'user-read-private user-read-email user-top-read';
+  let scope = 'user-read-private user-read-email user-top-read playlist-read-private playlist-read-collaborative playlist-modify-private';
 
   localStorage.setItem('code_verifier', codeVerifier);
 
@@ -58,7 +58,7 @@ export async function requestAccessToken() {
   const data = await res.json()
   console.log('data' , data)
   localStorage.setItem('access_token', data.access_token)
-  const profile = await profilesAPI.createProfile(data.access_token)
+  const profile = await profilesAPI.createProfile(data.access_token, data.refresh_token)
   return profile
 }
 
@@ -76,6 +76,9 @@ export async function requestUserTopSongs(access_token) {
   return await result.json();
 }
 
+export async function getRefreshToken() {
+
+}
 
 // Helper functions
 function generateRandomString(length) {
