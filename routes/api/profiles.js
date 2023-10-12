@@ -10,4 +10,5 @@ router.post ('/token/update', profilesCtrl.updateToken)
 router.post ('/add-user-info', profilesCtrl.addInfo)
 
 
+
 module.exports = router;

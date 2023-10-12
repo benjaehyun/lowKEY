@@ -36,3 +36,7 @@
     transform: rotate(360deg);
   }
 }
+
+.playlist-div{
+  border: 5px solid black;
+}

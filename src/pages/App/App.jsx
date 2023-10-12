@@ -9,6 +9,8 @@ import NavBar from "../../components/NavBar/NavBar";
 import PlaylistsPage from "../PlaylistsPage/PlaylistsPage"
 import SpotifyLoginPage from "../SpotifyLoginPage/SpotifyLoginPage";
 import ProfileFormPage from "../ProfileFormPage/ProfileFormPage";
+import ProfileShowPage from "../ProfileShowPage/ProfileShowPage";
+import SongFeaturesPage from "../SongFeaturesPage/SongFeaturesPage";
 
 
 export default function App() {
@@ -24,8 +26,9 @@ export default function App() {
               <Route path="/playlists" element={ <PlaylistsPage /> } />
               <Route path="/spotifylogin" element={ <SpotifyLoginPage /> } />
               <Route path="/profile/create" element={ <ProfileFormPage /> } />
-              {/* <Route path="/profile" element={ <ProfileShowPage /> } /> */}
+              <Route path="/profile" element={ <ProfileShowPage /> } />
               <Route path="/top" element={ <TopSongs /> } />
+              <Route path="/features" element={ <SongFeaturesPage /> } />
               <Route path='/*' element={<Navigate to='/' />} />
             </Routes>
         </>

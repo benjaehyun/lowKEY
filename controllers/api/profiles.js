@@ -15,12 +15,9 @@ async function create (req, res) {
         req.body.name = req.user.name
         let token = req.body.accessToken 
         req.body.spotifyRefresh = req.body.refreshToken 
-        console.log(`profile req.body: ${JSON.stringify(req.body)}`)
-        // const profile = await Profile.create(req.body)
         const profile = await Profile.findOneAndUpdate({user: req.user._id}, req.body, {new: true, upsert: true})
         profile.spotifyToken = {'token' : token}
         await profile.save()
-        console.log('profile:', profile)
         res.json(profile)
     } catch (err) {
         console.log(err)
@@ -55,7 +52,8 @@ async function updateToken (req, res) {
 
 async function addInfo (req, res) {
     try {
-        const profile = await Profile.findOneAndUpdate({user: req.user._id}, req.body)
+        const newInfo = req.body.form
+        const profile = await Profile.findOneAndUpdate({user: req.user._id}, newInfo)
         res.json(profile)
     } catch (err) {
         console.log(err)

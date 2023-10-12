@@ -5,12 +5,13 @@ import * as profilesAPI from "./profiles-api"
 const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID
 // const redirectUri = 'http://localhost:3000/spotifylogin';
 
-export default async function sendSpotifyRequest(url, method = 'GET', args = null) {
+export default async function sendSpotifyRequest(url, args = null, method = 'GET') {
     const access_token = await checkSpotifyToken()
     const options = { method };
     options.headers = {Authorization: `Bearer ${access_token}`}
-    console.log('options:', options)
-    const res = await fetch(url, options);
+    let apiUrl = url.concat(args || '')
+    console.log('apiUrl: ', apiUrl)
+    const res = await fetch(apiUrl, options);
     if (res.ok) return res.json();
     throw new Error('Bad Request');
   }
