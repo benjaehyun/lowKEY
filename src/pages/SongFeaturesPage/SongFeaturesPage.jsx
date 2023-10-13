@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react"
-import { Link, useNavigate} from "react-router-dom"
+import { useNavigate} from "react-router-dom"
 import * as spotifyAPI from "../../utilities/spotify-api"
 import * as playlistAPI from "../../utilities/playlist-api"
 
 
-export default function SongFeaturesPage ({ }) {
+export default function SongFeaturesPage () {
   const [apiData, setApiData] = useState(null)
   const [playlist, setPlaylist] = useState({})
 
