@@ -1,18 +1,14 @@
-import {useState, useEffect} from 'react'
 
-export default function MatchCard({profile, setIsMatched}) {
-    const [spotProfile, setSpotProfile] = useState({})
+
+export default function MatchCard({matchProfile}) {
     
-    function handleContinue() {
-        setIsMatched(false)
-    }
-    
+
     return (
-        <>
-            <h1> You Matched With {profile.name} !  </h1>
-            <button onClick={handleContinue}>Keep Swiping </button>
-            <button> Go To See Your Match </button>
-
-        </>
+        <div>
+            <h2>{matchProfile.name}, {matchProfile.age}</h2>
+            <h4>About: {matchProfile.about}</h4>
+            <h4>Artists They Like: {matchProfile.artists}</h4>
+            <h4>Genres They Like: {matchProfile.genres}</h4>
+        </div>
     )
 }

@@ -170,6 +170,9 @@ async function addMatch(req, res) {
         const profile = await Profile.findOne({user: req.user._id})
         profile.matches.push(req.body.id)
         await profile.save()
+        const match = await Profile.findOne({_id: req.body.id})
+        match.matches.push(profile._id)
+        await match.save() 
         res.json(profile)
     } catch (err) {
         console.log(err)
