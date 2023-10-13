@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react'
 import SpotifyProfileInfo from "../../components/SpotifyProfileInfo/SpotifyProfileInfo"
 import * as profileAPI from "../../utilities/profiles-api"
 import TopSongs from '../TopSongsPage/TopSongsPage'
+import ProfileSwipeCard from '../../components/ProfileSwipeCard/ProfileSwipeCard'
 
 export default function HomePage({profile, setProfile}) {
 
@@ -13,18 +14,19 @@ export default function HomePage({profile, setProfile}) {
         getApiProfile()
     }, [])
     
-    console.log(`homepage profile: ${JSON.stringify(profile)}`)
     return (
         <>
-            { profile?.spotifyToken ? 
-            // user is not being updated in the token because its being set back when you login, in the token. the token is being set before you save the spotify token so that's not being reflected until you logout and log back in 
+            { profile ? 
             <div>
                 <h1>Welcome to the lowKEY</h1>
                 <h3>The New Way to a match based on your taste in music </h3> 
-                {profile.name}
-                {profile.spotifyToken.token}
-                <SpotifyProfileInfo profile={profile} />
-                <TopSongs profile={profile} />
+                <h4> {profile.name}, {profile.age} </h4>
+                <h5> About you: {profile.about} </h5>
+                <h5> Genres you like: {profile.genres} </h5>
+                <h5> Artists you like: {profile.artists} </h5>
+                <ProfileSwipeCard profile={profile} />
+                {/* <SpotifyProfileInfo profile={profile} /> */}
+                {/* <TopSongs profile={profile} /> */}
             </div>
             :  
             'no bueno'

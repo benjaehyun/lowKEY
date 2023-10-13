@@ -32,6 +32,21 @@ const profileSchema = new Schema ({
         type: String,
         default: null,       
     }, 
+    likes: [{
+        type: Schema.Types.ObjectId, 
+        ref: 'Profile', 
+        required: true
+    }],
+    dislikes: [{
+        type: Schema.Types.ObjectId, 
+        ref: 'Profile', 
+        required: true
+    }],
+    matches: [{
+        type: Schema.Types.ObjectId, 
+        ref: 'Profile', 
+        required: true
+    }],
 }, {
     timestamps: true
 })

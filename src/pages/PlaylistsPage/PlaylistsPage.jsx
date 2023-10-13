@@ -13,7 +13,6 @@ export default function TopSongs({ }) {
       async function getPlaylists() {
         try {
           const data = await spotifyAPI.fetchPlaylists()
-          console.log('data:', data)
           setApiData(data)
         } catch(err) {
           console.log(err)
@@ -27,14 +26,14 @@ export default function TopSongs({ }) {
   async function selectTopSongs () {
     const data = await spotifyAPI.fetchTopSongs()
     await playlistAPI.createTopPlaylist(data)
-    navigate('/profile')
+    navigate('/features')
   }
 
   async function selectPlaylist(id) {
     console.log(id)
     const data = await spotifyAPI.fetchPlaylistSongs(id)
     await playlistAPI.createMyPlaylist(data)
-    navigate('/profile')
+    navigate('/features')
   }
 
   const playlists = apiData?.items?.map((item, idx) => 
@@ -46,7 +45,7 @@ export default function TopSongs({ }) {
 
   return (
       <>
-          <h1> Pick One of Your Playlists or Use The Top 20 Songs In Your Profile</h1>
+          <h1> Pick One of Your Playlists or Use The Top 20 Songs From Your Spotify Profile</h1>
           <button onClick={selectTopSongs}>Use My Top 20 Songs</button>
           <div>{apiData ? <> {playlists} </>   : "Playlists Not Retrieved" }</div>
       </>

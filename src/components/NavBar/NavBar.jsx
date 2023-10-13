@@ -13,7 +13,9 @@ export default function NavBar({user, setUser}) {
             &nbsp; | &nbsp;
             <Link to="/top">My Top Songs</Link>
             &nbsp;  &nbsp;
-            <Link to="/playlists">My Playlists</Link>
+            {/* <Link to="/playlists">My Playlists</Link>
+            &nbsp;  &nbsp; */}
+            <Link to="/profile">My Profile</Link>
             <br />
             <span> Welcome, {user.name} </span> 
             &nbsp;  &nbsp; <Link to='' onClick={handleLogOut}>Log Out </Link>

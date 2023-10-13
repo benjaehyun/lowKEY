@@ -13,7 +13,6 @@ export default function TopSongs({ setProfile, profile}) {
           async function getTopSongs() {
             try {
               const data = await spotifyAPI.fetchTopSongs()
-              console.log(`top songs data: ${data}`)
               setApiData(data)
             } catch(err) {
               console.log(err)

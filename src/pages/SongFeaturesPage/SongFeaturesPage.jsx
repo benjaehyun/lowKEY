@@ -8,6 +8,7 @@ export default function SongFeaturesPage ({ }) {
   const [apiData, setApiData] = useState(null)
   const [playlist, setPlaylist] = useState({})
 
+  const navigate=useNavigate()
   useEffect(
     function() {
       async function getPlaylists() {
@@ -21,6 +22,7 @@ export default function SongFeaturesPage ({ }) {
         }
       }
       getPlaylists()     
+      navigate('/')
     }, [])
   
   

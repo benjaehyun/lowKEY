@@ -1,16 +1,12 @@
 import * as profilesAPI from "./profiles-api"
 
-// send-request.js
-
 const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID
-// const redirectUri = 'http://localhost:3000/spotifylogin';
 
 export default async function sendSpotifyRequest(url, args = null, method = 'GET') {
     const access_token = await checkSpotifyToken()
     const options = { method };
     options.headers = {Authorization: `Bearer ${access_token}`}
     let apiUrl = url.concat(args || '')
-    console.log('apiUrl: ', apiUrl)
     const res = await fetch(apiUrl, options);
     if (res.ok) return res.json();
     throw new Error('Bad Request');
@@ -24,9 +20,7 @@ export async function checkSpotifyToken() {
   if (deltaDate >= 60) {
     profile = requestRefreshToken(profile.spotifyRefresh) 
   }
-  console.log('deltaDate: ', deltaDate)
   const access_token = profile.spotifyToken.token
-  console.log('checkSpotifyToken :', access_token)
   return access_token
 }
 
@@ -50,7 +44,6 @@ async function requestRefreshToken(spotifyRefresh) {
     throw new Error ('HTTP status' + res.status)
   }
   const data = await res.json()
-  // console.log('refresh token data' , data)
   localStorage.setItem('access_token', data.access_token)
   const profile = await profilesAPI.createProfile(data.access_token, data.refresh_token)
   return profile

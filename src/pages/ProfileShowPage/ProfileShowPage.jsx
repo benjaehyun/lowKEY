@@ -16,15 +16,13 @@ export default function ProfileShowPage({}) {
         <>
             <div>
                 <h1>Profile Show Page</h1>
-                {profile.name} <br />
-                {profile.age} <br />
-                {profile.about} <br />
-                {profile.genres} <br />
-                {profile.artists} <br />
-                {profile.spotifyToken.token}
-                <Link to={'/features'}>
+                <h4> {profile.name}, {profile.age} </h4>
+                <h5> About you: {profile.about} </h5>
+                <h5> Genres you like: {profile.genres} </h5>
+                <h5> Artists you like: {profile.artists} </h5>
+                {/* <Link to={'/features'}>
                     <button> go to get spotify features </button>
-                </Link>
+                </Link> */}
             </div>
         </>
 

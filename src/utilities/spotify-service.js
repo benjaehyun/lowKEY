@@ -7,7 +7,6 @@ export async function getProfile(accessToken) {
 }
 
 const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID
-
 const redirectUri = 'http://localhost:3000/spotifylogin';
 let codeVerifier = generateRandomString(128);
 
@@ -64,20 +63,6 @@ export async function requestAccessToken() {
 
 export function getAccessToken() {
   return localStorage.getItem('access_token') || null
-}
-
-export async function requestUserTopSongs(access_token) {
-  // const access_token = getAccessToken()
-  console.log(`top songs request access token: ${access_token}`)
-  const result = await fetch("https://api.spotify.com/v1/me/top/tracks", {
-        method: "GET", headers: { 'Authorization': `Bearer ${access_token}` }
-    });
-
-  return await result.json();
-}
-
-export async function getRefreshToken() {
-
 }
 
 // Helper functions

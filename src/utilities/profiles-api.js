@@ -27,3 +27,19 @@ export async function createTopPlaylist (data) {
   return sendRequest(`${BASE_URL}/playlist/add-top`, 'POST', {data});
 
 }
+
+export async function getQueue () {
+  return sendRequest(`${BASE_URL}/queue`)
+}
+
+export async function sendDislike (id) {
+  return sendRequest(`${BASE_URL}/dislike`, 'POST', {id})
+}
+
+export async function sendLike (id) {
+  return sendRequest(`${BASE_URL}/like`, 'POST', {id})
+}
+
+export async function sendMatch (id) {
+  return sendRequest(`${BASE_URL}/match`, 'POST', {id})
+}
