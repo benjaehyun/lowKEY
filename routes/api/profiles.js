@@ -11,7 +11,8 @@ router.post ('/token/update', profilesCtrl.updateToken)
 router.post ('/add-user-info', profilesCtrl.addInfo)
 router.post ('/dislike', profilesCtrl.addDislike)
 router.post ('/like', profilesCtrl.addLike)
-router.post ('/match', profilesCtrl.addMatch)
+router.post ('/match/add', profilesCtrl.addMatch)
+router.get ('/match', profilesCtrl.getMatches)
 
 
 

@@ -41,5 +41,9 @@ export async function sendLike (id) {
 }
 
 export async function sendMatch (id) {
-  return sendRequest(`${BASE_URL}/match`, 'POST', {id})
+  return sendRequest(`${BASE_URL}/match/add`, 'POST', {id})
+}
+
+export async function fetchMatches () {
+  return sendRequest(`${BASE_URL}/match`)
 }

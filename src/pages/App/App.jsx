@@ -11,6 +11,7 @@ import SpotifyLoginPage from "../SpotifyLoginPage/SpotifyLoginPage";
 import ProfileFormPage from "../ProfileFormPage/ProfileFormPage";
 import ProfileShowPage from "../ProfileShowPage/ProfileShowPage";
 import SongFeaturesPage from "../SongFeaturesPage/SongFeaturesPage";
+import MatchesPage from "../MatchesPage/MatchesPage";
 
 
 export default function App() {
@@ -27,6 +28,7 @@ export default function App() {
               <Route path="/spotifylogin" element={ <SpotifyLoginPage /> } />
               <Route path="/profile/create" element={ <ProfileFormPage /> } />
               <Route path="/profile" element={ <ProfileShowPage /> } />
+              <Route path="/matches" element={ <MatchesPage /> } />
               <Route path="/top" element={ <TopSongs /> } />
               <Route path="/features" element={ <SongFeaturesPage /> } />
               <Route path='/*' element={<Navigate to='/' />} />

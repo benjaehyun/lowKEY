@@ -36,12 +36,15 @@ export default function TopSongs({ }) {
     navigate('/features')
   }
 
-  const playlists = apiData?.items?.map((item, idx) => 
+  let playlists = apiData?.items?.map(function (item, idx) { 
+    if (item.tracks.total >= 20) return (
     <div key={idx} onClick={()=>selectPlaylist(item.id)} className="playlist-div">
       <h2>Title: {item.name} </h2>
       <h3>ID: {item.id} </h3>
     </div>
-  )
+    ) 
+})
+playlists = playlists?.filter(x=>x)
 
   return (
       <>

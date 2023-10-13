@@ -11,6 +11,7 @@ module.exports = {
     addDislike, 
     addLike, 
     addMatch, 
+    getMatches, 
 }
 
 async function create (req, res) {
@@ -131,7 +132,6 @@ async function queueIndex(req, res) {
         for (let i = 0; i < scoredPlaylistArr.length; i ++) {
             scoredPlaylistArr[i].profile =  await Profile.findOne({user: scoredPlaylistArr[i].playlist.user})
         }
-        // console.log('scoredPlaylistArr: ', scoredPlaylistArr)
         res.json(scoredPlaylistArr)
     } catch (err) {
         console.log(err)
@@ -171,6 +171,18 @@ async function addMatch(req, res) {
         profile.matches.push(req.body.id)
         await profile.save()
         res.json(profile)
+    } catch (err) {
+        console.log(err)
+        res.status(400).json(err)
+    }
+}
+
+async function getMatches (req, res) {
+    try {
+        const profile = await Profile.findOne({user: req.user._id})
+        const matchesList = await Profile.find({_id: {$in: profile.matches}})
+
+        res.json(matchesList)
     } catch (err) {
         console.log(err)
         res.status(400).json(err)
