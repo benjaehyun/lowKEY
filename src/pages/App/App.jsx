@@ -3,7 +3,7 @@ import { Routes, Route, Navigate } from "react-router-dom"
 import { getUser } from "../../utilities/users-service";
 import './App.css';
 import AuthPage from "../AuthPage/AuthPage";
-import HomePage from "../HomePage/Homepage";
+import HomePage from "../HomePage/HomePage";
 import TopSongs from "../TopSongsPage/TopSongsPage";
 import NavBar from "../../components/NavBar/NavBar";
 import PlaylistsPage from "../PlaylistsPage/PlaylistsPage"
