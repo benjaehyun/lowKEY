@@ -78,7 +78,7 @@ export default function ProfileSwipeCard ({profile}) {
                     <h3>about: {profilesQueue[activeIdx].profile.about}</h3>
                     <h4>favorite artists: {profilesQueue[activeIdx].profile.artists}</h4>
                     <h4>favorite genres: {profilesQueue[activeIdx].profile.genres}</h4>
-                    <h4>some songs found on their songlist:&nbsp; </h4>
+                    <h4>some songs from their songlist:&nbsp; </h4>
                         <div className='found-list'>
                             {showArr(profilesQueue[activeIdx].playlist.songName)}
                         </div>

@@ -47,3 +47,7 @@ export async function sendMatch (id) {
 export async function fetchMatches () {
   return sendRequest(`${BASE_URL}/match`)
 }
+
+export async function fetchMatchSongData (profile) {
+  return sendRequest(`${BASE_URL}/match/data`, 'POST', {profile})
+}

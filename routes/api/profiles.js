@@ -13,6 +13,7 @@ router.post ('/dislike', profilesCtrl.addDislike)
 router.post ('/like', profilesCtrl.addLike)
 router.post ('/match/add', profilesCtrl.addMatch)
 router.get ('/match', profilesCtrl.getMatches)
+router.post ('/match/data', profilesCtrl.getMatchData)
 
 
 
