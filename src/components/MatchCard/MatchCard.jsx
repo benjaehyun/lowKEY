@@ -1,3 +1,4 @@
+import ChatBox from "../ChatBox/ChatBox";
 
 
 export default function MatchCard({matchProfile}) {
@@ -9,6 +10,7 @@ export default function MatchCard({matchProfile}) {
             <h4>About: {matchProfile.about}</h4>
             <h4>Artists They Like: {matchProfile.artists}</h4>
             <h4>Genres They Like: {matchProfile.genres}</h4>
+            <ChatBox matchProfile={matchProfile}/>
         </div>
     )
 }
