@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { Link } from "react-router-dom"
 import * as spotifyService from "../../utilities/spotify-service"
+import { Button } from "react-bootstrap"
 
 export default function SpotifyLoginPage({ setProfile, profile}) {
   const navigate = useNavigate()
@@ -29,11 +30,11 @@ export default function SpotifyLoginPage({ setProfile, profile}) {
 
 
     return (
-      <>
+      <main className="main-content">
         <h1>Spotify Account Connected!</h1>
         <Link to="/profile/create">
-          <button> Continue To Create A Profile </button>
+          <Button> Continue To Create A Profile </Button>
         </Link>
-      </>
+      </main>
     )
 }

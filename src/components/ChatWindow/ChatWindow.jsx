@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import io  from 'socket.io-client'
 import "./ChatWindow.css"
 import * as profilesAPI from "../../utilities/profiles-api"
+import { Button } from 'react-bootstrap'
 import * as socketModule from "./socket"
 
 export default function MatchCard({matchProfile}) {
@@ -89,23 +90,33 @@ export default function MatchCard({matchProfile}) {
     // )
 
     return (
-        <>
-            <div>
-                {chatroomState?.map((message, idx) => 
+        <div className='chat-div'>
+            <h2>Your Chat with {matchProfile.name}</h2>
+            <div className='messages-div'>
+                {chatroomState?.map((message, idx) =>   //please for the love of god, refactor this
     {
         return (
             <>
-                <p key={idx}>{message.content}</p>
-                { message.sender ? <small>{message.sender}</small> : '' }
+                { message.sender === data.currentProfile.name ? 
+                    <div className='user-msg'>
+                    <p key={idx}>{message.content}</p>
+                    {/* { message.sender ? <small></small> : '' } */}
+                </div>
+                :
+                <div className='match-msg'>
+                    <p key={idx}>{message.content}</p>
+                    { message.sender ? <small>-{message.sender}</small> : '' }
+                </div>
+                }
             </>
         )
     }
     )}
             </div>
-            <div>
+            <div className='input-div'>
                 <input type="text" onChange={handleChange} value={message}/>
-                <button onClick={handleSubmit}>send </button>
+                <Button onClick={handleSubmit}> send </Button>
             </div>
-        </>
+        </div>
     )
 }

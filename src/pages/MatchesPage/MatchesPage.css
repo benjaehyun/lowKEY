@@ -1,0 +1,54 @@
+.main-match {
+    text-align: center;
+    color: white;
+    margin-top: 2vmin;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    margin-bottom: 2vmin;
+    max-height: 96vmin;
+  }
+
+.match-list {
+    display: flex; 
+    flex-direction: column;
+    align-items: flex-start;
+    width: 15vmax;
+    min-width: 15vmax;
+    height: 56vmin;
+    font-size: 18px;
+    background-color: rgb(35, 35, 35);
+    margin-top: 44vmin;
+    margin-left: -15vmax;
+    overflow-y: auto;
+}
+
+aside>div {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1vmin;
+    background-color: rgb(35, 35, 35);
+    height: 6vmin;
+    width: 14vmax;
+    display: flex;
+    align-items: center;
+    border-radius: .2em;
+    display: flex;
+    justify-content: center;
+}
+
+div>h5{
+    background-color: rgb(35, 35, 35);
+}
+
+
+aside>div:hover, div>h5:hover{
+    background-color: rgb(30, 30, 30);
+}
+
+nav>img {
+    margin-left: 3.5vmax;
+    background-color: rgb(35, 35, 35);
+}

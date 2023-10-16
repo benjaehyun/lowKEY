@@ -1,2 +1,2 @@
-# MERN-Stack Infrastructure
-Clone this repo to provide the starter code for a comprehensive MERN-Stack project including token-based authentication.
+icebox: 
+gender prefs, creating playlists for pairs of matches, embedded player and let users select songs, image cropper, more accurate algo, animations, notifications, location, profile edit, refactor for mobile app design  

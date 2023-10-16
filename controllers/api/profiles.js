@@ -129,7 +129,7 @@ async function addMatch(req, res) {
         const match = await Profile.findOne({_id: req.body.id})
         match.matches.push(profile._id)
         await match.save() 
-        const chatRoom = await ChatRoom.create({profiles: [profile._id, match._id], messages: [{content: `${profile.name}, Welcome to your chat with ${match.name}`}]})
+        const chatRoom = await ChatRoom.create({profiles: [profile._id, match._id]})
         res.json(chatRoom._id)
     } catch (err) {
         console.log(err)

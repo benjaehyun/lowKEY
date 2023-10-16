@@ -19,26 +19,33 @@ export default function App() {
   const [user, setUser] = useState(getUser()) //the initial value for the state is the return from the getUser function
   const [profile, setProfile] = useState({})
   return (
+    <>
     <main className="App">
       {user ? 
         <>
           <NavBar user={user} setUser={setUser} />
+          {/* <main className="main-content"> */}
+
             <Routes>
               <Route path="/" element={ <HomePage profile={profile} setProfile={setProfile} /> } />
               <Route path="/playlists" element={ <PlaylistsPage /> } />
               <Route path="/spotifylogin" element={ <SpotifyLoginPage /> } />
               <Route path="/profile/create" element={ <ProfileFormPage /> } />
               {/* <Route path="/profile/photo/upload" element={ <PhotoUploadPage /> } /> */}
-              <Route path="/profile" element={ <ProfileShowPage /> } />
               <Route path="/matches" element={ <MatchesPage /> } />
+              <Route path="/profile" element={ <ProfileShowPage /> } />
               <Route path="/top" element={ <TopSongs /> } />
               <Route path="/features" element={ <SongFeaturesPage /> } />
               <Route path='/*' element={<Navigate to='/' />} />
             </Routes>
+          {/* </main> */}
         </>
         : 
-        <AuthPage setUser={setUser}/>
+        <main> 
+          <AuthPage setUser={setUser}/>
+        </main>
       }
     </main>
+    </>
   );
 }

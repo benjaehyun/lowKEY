@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import * as profilesAPI from "../../utilities/profiles-api"
 import MatchCard from "../../components/MatchCard/MatchCard"
 import ChatWindow from "../../components/ChatWindow/ChatWindow"
+import "./MatchesPage.css"
 
 
 export default function MatchesPage() {
@@ -32,7 +33,7 @@ export default function MatchesPage() {
     const matchList = matches?.map(function (match, idx){
         return (
             <div onClick={() => selectMatch(idx)} key={idx}>
-                {match.name} , {match.age}
+                <h5>{match.name} , {match.age}</h5>
             </div>
         )
     })
@@ -41,17 +42,19 @@ export default function MatchesPage() {
         <>
             { hasMatches ?
             <>
-                <aside>
+                <aside className="match-list">
                     {matchList}
                 </aside>
+                <main className="main-match">
                 { activeIdx !== null ? 
                     <>
-                        <MatchCard matchProfile={matches[activeIdx]} /> 
                         <ChatWindow matchProfile={matches[activeIdx]} /> 
+                        <MatchCard matchProfile={matches[activeIdx]} /> 
                     </>
                     : 
                     <p>No Match Selected</p>
                 }
+                </main>
             </>
             : 
             <>

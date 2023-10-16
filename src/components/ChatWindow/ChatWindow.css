@@ -1,0 +1,62 @@
+.chat-div{
+    width: 50%;
+}
+
+.messages-div {
+    height: 87%;
+    overflow-y: auto;
+    background-color: rgb(35, 35, 35);
+    border-radius: 1em;
+    display: flex;
+    flex-direction: column;
+    padding-top: 4vmin;
+}
+
+.user-msg {
+    background-color: rgb(30, 30, 30);
+    align-self: flex-end;
+    margin-right: 2vmax;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    border-radius: .5em;
+}
+.match-msg {
+    background-color: rgb(70, 203, 98);
+    align-self: flex-start;
+    margin-left: 2vmax;
+    margin-right: 2vmax;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    border-radius: .5em;
+}
+
+.user-msg>p, .match-msg>p {
+    /* background-color: rgb(35, 35, 35); */
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0;
+    /* margin-left: ; */
+}
+.match-msg>p, .match-msg>small{
+    background-color: rgb(70, 203, 98);
+    color: black;
+}
+
+small {
+    background-color: rgb(35, 35, 35);
+}
+
+.input-div{ 
+    margin-top: 1.5vmin;
+}
+
+.input-div > input {
+    height: 3em;
+    margin-right: 0.5vmax;
+    width: 38vmax;
+}
+

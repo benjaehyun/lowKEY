@@ -1,6 +1,8 @@
 import { useState, useRef } from 'react'; 
 import * as profileAPI from "../../utilities/profiles-api"
 import { useNavigate } from 'react-router-dom';
+import "./ProfileFormPage.css"
+import { Button } from 'react-bootstrap';
 
 export default function ProfileFormPage () {
     const [formData, setFormData] = useState({
@@ -57,28 +59,30 @@ export default function ProfileFormPage () {
   }
 
     return (
-        <div>
-        <div className="form-container">
-          <form autoComplete="off" onSubmit={handleSubmit} >
-            <label>Age</label>
-            <input type="number" name="age" min={'18'} max={'100'} value={formData.age} onChange={handleChange} required />
-            <label>About You</label>
-            <textarea type="text" name="about" maxLength={'500'} value={formData.about} onChange={handleChange} required />
-            <label>Genres You Like</label>
-            <input type="text" name="genres" maxLength={'50'} value={formData.genres} onChange={handleChange} required />
-            <label>Artists You Like</label>
-            <input type="text" name="artists" maxLength={'100'} value={formData.artists} onChange={handleChange} required />
-            <label>Photos for your profile (max: 6):</label>
-            <input type="file"
-            // enctype="multipart/form-data"
-             ref={fileInputRef}
-             onChange={(e) => uploadMultipleFiles(e)} 
-              accept=".jpg,.jpeg,.png,.heif,.heifs.heic,.heics.avci,.avcs.avif,.HIF" multiple required/>
-            <button type="submit">Finish Creating My Profile</button>
-          </form>
-          <img src="" alt="" />
+      <main className="main-content">
+          <div>
+          <div className="form-container">
+            <form autoComplete="off" onSubmit={handleSubmit} >
+              <label>Age</label>
+              <input type="number" name="age" min={'18'} max={'100'} value={formData.age} onChange={handleChange} required />
+              <label>About You</label>
+              <textarea type="text" name="about" maxLength={'500'} value={formData.about} onChange={handleChange} required />
+              <label>Genres You Like</label>
+              <input type="text" name="genres" maxLength={'50'} value={formData.genres} onChange={handleChange} required />
+              <label>Artists You Like</label>
+              <input type="text" name="artists" maxLength={'100'} value={formData.artists} onChange={handleChange} required />
+              <label>Photos for your profile (max: 6):</label>
+              <input type="file"
+              // enctype="multipart/form-data"
+              ref={fileInputRef}
+              onChange={(e) => uploadMultipleFiles(e)} 
+                accept=".jpg,.jpeg,.png,.heif,.heifs.heic,.heics.avci,.avcs.avif,.HIF" multiple required/>
+              <Button type="submit">Finish Creating My Profile</Button>
+            </form>
+            <img src="" alt="" />
+          </div>
+          <p className="error-message">&nbsp;{error}</p>
         </div>
-        <p className="error-message">&nbsp;{error}</p>
-      </div>
+      </main>
     )
     }

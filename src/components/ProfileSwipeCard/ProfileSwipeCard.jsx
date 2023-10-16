@@ -1,7 +1,9 @@
 import {useState, useEffect} from 'react'
 import Carousel from 'react-bootstrap/Carousel';
+import { Card } from 'react-bootstrap';
 import CarouselItem from 'react-bootstrap/CarouselItem'
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCircleXmark, faHeart } from '@fortawesome/free-solid-svg-icons'
 import * as profilesAPI from "../../utilities/profiles-api"
 import './ProfileSwipeCard.css'
 import MatchNotification from '../MatchNotification/MatchNotification'
@@ -76,7 +78,7 @@ export default function ProfileSwipeCard ({profile}) {
         return (
           <Carousel.Item interval={3000}>        
         <img
-          className="d-block h-30"
+          height={'300px'}
           src={photo}
           alt="slider image"
           
@@ -87,14 +89,13 @@ export default function ProfileSwipeCard ({profile}) {
 
     return (
         <div>
-            <h1>profile swipe card component</h1>
             { isMatched ? 
             <MatchNotification profile={currentMatch} setIsMatched={setIsMatched} />
             :
             <>
                 {
                     profilesQueue[activeIdx]?.profile ?
-                <div>
+                <div className='swipe-card'>
                     <h1>{profilesQueue[activeIdx].profile.name}, {profilesQueue[activeIdx].profile.age}</h1>
                     
                     <Carousel activeIndex={photoIndex} onSelect={handleSelect}>
@@ -102,25 +103,31 @@ export default function ProfileSwipeCard ({profile}) {
                     </Carousel>
 
 
-
-
-                    <h3>about: {profilesQueue[activeIdx].profile.about}</h3>
-                    <h4>favorite artists: {profilesQueue[activeIdx].profile.artists}</h4>
-                    <h4>favorite genres: {profilesQueue[activeIdx].profile.genres}</h4>
-                    <h4>some songs from their songlist:&nbsp; </h4>
-                        <div className='found-list'>
-                            {showArr(profilesQueue[activeIdx].playlist.songName)}
+                    <div className='swipecard-info'>
+                        <div>
+                            <h3>about:</h3> <p>{profilesQueue[activeIdx].profile.about}</p>
+                            <h4>favorite artists:</h4> {profilesQueue[activeIdx].profile.artists}
+                            <h4>favorite genres:</h4> {profilesQueue[activeIdx].profile.genres}
                         </div>
-                    <h4>some artists found on their songlist:&nbsp;</h4>
-                        <div className='found-list'>
-                            {showArr(profilesQueue[activeIdx].playlist.artist)}
+                        <div>
+                            <h4 className='found-label'>some songs from their songlist:&nbsp; </h4>
+                            <div className='found-list'>
+                                {showArr(profilesQueue[activeIdx].playlist.songName)}
+                            </div>
+                            <h4 className='found-label'>some artists found on their songlist:&nbsp;</h4>
+                            <div className='found-list'>
+                                {showArr(profilesQueue[activeIdx].playlist.artist)}
+                            </div>
+                            <h4 className='found-label'>some albums found on their songlist:&nbsp;</h4>
+                            <div className='found-list'>
+                                {showArr(profilesQueue[activeIdx].playlist.album)}
+                            </div>
                         </div>
-                    <h4>some albums found on their songlist:&nbsp;</h4>
-                        <div className='found-list'>
-                            {showArr(profilesQueue[activeIdx].playlist.album)}
-                        </div>
-                    <button onClick={handleLike}> Like </button>
-                    <button onClick={handleDislike}> Dislike </button>
+                    </div>
+                    <div className='buttons-div'>
+                        <FontAwesomeIcon className='fa-deny' icon={faCircleXmark} size="xl" style={{color: "#ff0000",}} onClick={handleDislike} />
+                        <FontAwesomeIcon className='fa-like' icon={faHeart} size="xl" style={{color: "#1cd255",}} onClick={handleLike}/>
+                    </div>
                 </div>
                 : 
                 'loading profiles'
