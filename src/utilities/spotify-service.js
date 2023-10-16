@@ -7,7 +7,7 @@ export async function getProfile(accessToken) {
 }
 
 const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID
-const redirectUri = 'http://localhost:3000/spotifylogin';
+const redirectUri = 'https://lowkey-08ba0f67b0aa.herokuapp.com/spotifylogin';
 let codeVerifier = generateRandomString(128);
 
 // Service Functions

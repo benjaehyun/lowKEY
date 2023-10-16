@@ -24,21 +24,17 @@ export default function App() {
       {user ? 
         <>
           <NavBar user={user} setUser={setUser} />
-          {/* <main className="main-content"> */}
-
             <Routes>
               <Route path="/" element={ <HomePage profile={profile} setProfile={setProfile} /> } />
               <Route path="/playlists" element={ <PlaylistsPage /> } />
               <Route path="/spotifylogin" element={ <SpotifyLoginPage /> } />
               <Route path="/profile/create" element={ <ProfileFormPage /> } />
-              {/* <Route path="/profile/photo/upload" element={ <PhotoUploadPage /> } /> */}
               <Route path="/matches" element={ <MatchesPage /> } />
               <Route path="/profile" element={ <ProfileShowPage /> } />
               <Route path="/top" element={ <TopSongs /> } />
               <Route path="/features" element={ <SongFeaturesPage /> } />
               <Route path='/*' element={<Navigate to='/' />} />
             </Routes>
-          {/* </main> */}
         </>
         : 
         <main> 
