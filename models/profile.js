@@ -23,6 +23,7 @@ const profileSchema = new Schema ({
     about: {type: String, default: null},
     genres: {type: String, default: null},
     artists: {type: String, default: null},
+    photos: [{type: String, default: null}],
     spotifyToken: spotifyTokenSchema,
     spotifyRefresh: {
         type: String,

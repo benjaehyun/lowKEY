@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import * as profilesAPI from "../../utilities/profiles-api"
 import MatchCard from "../../components/MatchCard/MatchCard"
+import ChatWindow from "../../components/ChatWindow/ChatWindow"
 
 
 export default function MatchesPage() {
@@ -44,7 +45,10 @@ export default function MatchesPage() {
                     {matchList}
                 </aside>
                 { activeIdx !== null ? 
-                    <MatchCard matchProfile={matches[activeIdx]} /> 
+                    <>
+                        <MatchCard matchProfile={matches[activeIdx]} /> 
+                        <ChatWindow matchProfile={matches[activeIdx]} /> 
+                    </>
                     : 
                     <p>No Match Selected</p>
                 }

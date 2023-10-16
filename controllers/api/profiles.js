@@ -1,7 +1,9 @@
 const User = require('../../models/user')
 const Profile = require('../../models/profile')
 const Playlist = require('../../models/playlist')
+const ChatRoom = require('../../models/chatRoom')
 const calculationHelper = require('./calculation-helper')
+const uploadFile = require('../../config/upload-file')
 
 module.exports = {
     create, 
@@ -14,6 +16,8 @@ module.exports = {
     addMatch, 
     getMatches, 
     getMatchData, 
+    addPhoto, 
+    getChatRoom
 }
 
 async function create (req, res) {
@@ -125,7 +129,8 @@ async function addMatch(req, res) {
         const match = await Profile.findOne({_id: req.body.id})
         match.matches.push(profile._id)
         await match.save() 
-        res.json(profile)
+        const chatRoom = await ChatRoom.create({profiles: [profile._id, match._id], messages: [{content: `${profile.name}, Welcome to your chat with ${match.name}`}]})
+        res.json(chatRoom._id)
     } catch (err) {
         console.log(err)
         res.status(400).json(err)
@@ -136,7 +141,6 @@ async function getMatches (req, res) {
     try {
         const profile = await Profile.findOne({user: req.user._id})
         const matchesList = await Profile.find({_id: {$in: profile.matches}})
-
         res.json(matchesList)
     } catch (err) {
         console.log(err)
@@ -165,6 +169,46 @@ async function getMatchData(req, res) {
         res.status(400).json(err)
     }
 }
+
+async function addPhoto(req, res) {
+    try {
+        console.log(req.files)
+        if(req.files) {
+            const profile = await Profile.findOne({user: req.user._id})
+            for (let i = 0; i < req.files.length; i ++) {
+                const photoURL = await uploadFile(req.files[i])
+                console.log(photoURL)
+                profile.photos.push(photoURL)
+            }
+            profile.save()
+            res.json(profile)
+        } else {
+            throw new Error('Must upload a File')
+        }
+    } catch (err) {
+        res.status(400).json(err.message)
+    }
+}
+
+async function getChatRoom(req, res) {
+    try {
+        const profile = await Profile.findOne({user: req.user._id})
+        const match = req.body.match
+        let foundChatroom = await ChatRoom.find({profiles: {$all:[profile._id, match._id]}})
+        const data = {
+            currentProfile: profile, 
+            currentMatch: match, 
+            chatroom: foundChatroom[0] 
+        }
+        // console.log(data)
+        res.json(data)
+    } catch (err) {
+        console.log(err)
+        res.status(400).json(err)
+    }
+}
+
+
 
 // helper 
 

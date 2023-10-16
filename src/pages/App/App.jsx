@@ -12,6 +12,7 @@ import ProfileFormPage from "../ProfileFormPage/ProfileFormPage";
 import ProfileShowPage from "../ProfileShowPage/ProfileShowPage";
 import SongFeaturesPage from "../SongFeaturesPage/SongFeaturesPage";
 import MatchesPage from "../MatchesPage/MatchesPage";
+import PhotoUploadPage from "../PhotoUploadPage/PhotoUploadPage"
 
 
 export default function App() {
@@ -27,6 +28,7 @@ export default function App() {
               <Route path="/playlists" element={ <PlaylistsPage /> } />
               <Route path="/spotifylogin" element={ <SpotifyLoginPage /> } />
               <Route path="/profile/create" element={ <ProfileFormPage /> } />
+              {/* <Route path="/profile/photo/upload" element={ <PhotoUploadPage /> } /> */}
               <Route path="/profile" element={ <ProfileShowPage /> } />
               <Route path="/matches" element={ <MatchesPage /> } />
               <Route path="/top" element={ <TopSongs /> } />

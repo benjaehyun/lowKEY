@@ -51,3 +51,12 @@ export async function fetchMatches () {
 export async function fetchMatchSongData (profile) {
   return sendRequest(`${BASE_URL}/match/data`, 'POST', {profile})
 }
+
+export async function uploadPhoto (photoFormData) {
+  return sendRequest(`${BASE_URL}/add-photo`, 'POST', photoFormData, true)
+}
+
+export async function fetchChatRoom(match) {
+  return sendRequest(`${BASE_URL}/get-chatroom`, 'POST', {match})
+  
+}

@@ -4,7 +4,7 @@ import * as spotifyAPI from "../../utilities/spotify-api"
 import * as playlistAPI from "../../utilities/playlist-api"
 
 
-export default function TopSongs({ }) {
+export default function TopSongs() {
   const [apiData, setApiData] = useState(null)
 
 
