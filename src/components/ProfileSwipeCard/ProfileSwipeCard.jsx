@@ -9,11 +9,12 @@ import './ProfileSwipeCard.css'
 import MatchNotification from '../MatchNotification/MatchNotification'
 
 export default function ProfileSwipeCard ({profile}) {
-    const [profilesQueue, setProfilesQueue] = useState([])
+    const [profilesQueue, setProfilesQueue] = useState([]) 
     const [activeIdx, setActiveIdx] = useState(0)
     const [isMatched, setIsMatched] = useState(false)
     const [currentMatch, setCurrentMatch] = useState({})
     const [photoIndex, setPhotoIndex] = useState(0);
+    const [infoIndex, setInfoIndex] = useState(0);
 
     useEffect(function () {
         async function getFirstProfileQueue() {
@@ -70,9 +71,14 @@ export default function ProfileSwipeCard ({profile}) {
         return returnArr
     }
 
-    const handleSelect = (selectedIndex) => {
+    const handlePhotoSelect = (selectedIndex) => {
         setPhotoIndex(selectedIndex);
       };
+    const handleInfoSelect = (selectedIndex) => {
+        setInfoIndex(selectedIndex);
+      };
+
+    
 
     const dataList = profilesQueue[activeIdx]?.profile?.photos.map((photo, idx)=> {
         return (
@@ -95,40 +101,45 @@ export default function ProfileSwipeCard ({profile}) {
             <>
                 {
                     profilesQueue[activeIdx]?.profile ?
-                <div className='swipe-card'>
-                    <h1>{profilesQueue[activeIdx].profile.name}, {profilesQueue[activeIdx].profile.age}</h1>
-                    
-                    <Carousel activeIndex={photoIndex} onSelect={handleSelect}>
-                        {dataList}
-                    </Carousel>
-
-
-                    <div className='swipecard-info'>
-                        <div>
-                            <h3>about:</h3> <p>{profilesQueue[activeIdx].profile.about}</p>
-                            <h4>favorite artists:</h4> {profilesQueue[activeIdx].profile.artists}
-                            <h4>favorite genres:</h4> {profilesQueue[activeIdx].profile.genres}
+                    <>
+                        <div className='swipe-card'>
+                            <h1>{profilesQueue[activeIdx].profile.name}, {profilesQueue[activeIdx].profile.age}</h1>
+                            
+                            <Carousel activeIndex={photoIndex} onSelect={handlePhotoSelect}>
+                                {dataList}
+                            </Carousel>
+                            <Carousel activeIndex={infoIndex} onSelect={handleInfoSelect}>
+                                    <Carousel.Item interval={10000}> 
+                                        <div className='info-block'>
+                                            <h3>about:</h3> <p>{profilesQueue[activeIdx].profile.about}</p>
+                                            <h4>favorite artists:</h4> {profilesQueue[activeIdx].profile.artists}
+                                            <h4>favorite genres:</h4> {profilesQueue[activeIdx].profile.genres}
+                                        </div>
+                                    </Carousel.Item>
+                                    <Carousel.Item interval={10000}> 
+                                        <div className='info-block'>
+                                            <h4 className='found-label'>some songs from their songlist:&nbsp; </h4>
+                                            <div className='found-list'>
+                                                {showArr(profilesQueue[activeIdx].playlist.songName)}
+                                            </div>
+                                            <h4 className='found-label'>some artists found on their songlist:&nbsp;</h4>
+                                            <div className='found-list'>
+                                                {showArr(profilesQueue[activeIdx].playlist.artist)}
+                                            </div>
+                                            <h4 className='found-label'>some albums found on their songlist:&nbsp;</h4>
+                                            <div className='found-list'>
+                                                {showArr(profilesQueue[activeIdx].playlist.album)}
+                                            </div>
+                                        </div>
+                                    </Carousel.Item>
+                                
+                                </Carousel>
+                            <div className='buttons-div'>
+                                <FontAwesomeIcon className='fa-deny' icon={faCircleXmark} size="xl" style={{color: "#ff0000",}} onClick={handleDislike} />
+                                <FontAwesomeIcon className='fa-like' icon={faHeart} size="xl" style={{color: "#1cd255",}} onClick={handleLike}/>
+                            </div>
                         </div>
-                        <div>
-                            <h4 className='found-label'>some songs from their songlist:&nbsp; </h4>
-                            <div className='found-list'>
-                                {showArr(profilesQueue[activeIdx].playlist.songName)}
-                            </div>
-                            <h4 className='found-label'>some artists found on their songlist:&nbsp;</h4>
-                            <div className='found-list'>
-                                {showArr(profilesQueue[activeIdx].playlist.artist)}
-                            </div>
-                            <h4 className='found-label'>some albums found on their songlist:&nbsp;</h4>
-                            <div className='found-list'>
-                                {showArr(profilesQueue[activeIdx].playlist.album)}
-                            </div>
-                        </div>
-                    </div>
-                    <div className='buttons-div'>
-                        <FontAwesomeIcon className='fa-deny' icon={faCircleXmark} size="xl" style={{color: "#ff0000",}} onClick={handleDislike} />
-                        <FontAwesomeIcon className='fa-like' icon={faHeart} size="xl" style={{color: "#1cd255",}} onClick={handleLike}/>
-                    </div>
-                </div>
+                    </>
                 : 
                 'loading profiles'
                 }

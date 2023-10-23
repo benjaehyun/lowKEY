@@ -45,8 +45,7 @@ app.get('/*', function(req, res) {
 const Profile = require('./models/profile')
 const ChatRoom = require('./models/chatRoom')
 io.on('connection', (connectedSocket) => {
-    // socket.broadcast.emit('connection established')
-    // console.log('connected to socket')
+
     connectedSocket.on('join-room', chatroomID => {
         connectedSocket.join(chatroomID)
     })
@@ -60,52 +59,19 @@ io.on('connection', (connectedSocket) => {
             console.log('chatroom',chatroom)
             chatroom.save()
             obj.chatroomState.push(obj.newMessage)
-            // console.log(obj)
-            // io.emit('receive-message', obj.chatroomState)
-            // connectedSocket.to(obj.chatroomID).emit('receive-message', obj.chatroomState)
+
             io.to(obj.chatroomID).emit('receive-message', obj.chatroomState)
             
-            //back end call to push the data 
+
         } catch (err) {
             console.log(err)
         }
-        // console.log('data',JSON.stringify(data))
     })
     connectedSocket.on('disconnect', () => 
     console.log('socket disconnected')
     )
 })
-// io.on('connection', (connectedSocket) => {
-//     // socket.broadcast.emit('connection established')
-//     console.log('connected to socket')
-//     connectedSocket.on('message', async (data) => {
-//         try{
-//             console.log('data', data)
-//             console.log('chatRoomId', data.chatroomId)
-//             const chatroom = await ChatRoom.findOne({_id: data.chatroomId})
-//             const message = {
-//                 content: data.message, 
-//                 sender: data.sender
-//             }
-//             chatroom.messages.push(message)
-//             console.log('chatroom',chatroom)
-//             chatroom.save()
-//             //back end call to push the data 
-//         } catch (err) {
-//             console.log(err)
-//         }
-//         console.log('data',JSON.stringify(data))
-//     })
-//     connectedSocket.on('disconnect', () => 
-//     console.log('socket disconnected')
-//     )
-// })
-// io.on('client-data', (data) => {
-//     console.log(data)
-// })
 
-// Configure to use port 3001 instead of 3000 during
-// development to avoid collision with React's dev server
 const port = process.env.PORT || 3001;
 
 

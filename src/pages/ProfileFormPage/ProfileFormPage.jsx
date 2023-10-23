@@ -29,14 +29,11 @@ export default function ProfileFormPage () {
             const photoFormData = new FormData();
             let photoArr = []
             console.log(photo)
-              // photoFormData.append('photo', photo);
             for (let i=0; i < photo.length; i ++) {
               photoFormData.append('photo', photo[i]);
             }
-            console.log(photoFormData.getAll('photo'))
-            // photoFormData.append('photo', photo[i])
-            // photoFormData.append('photo', fileInputRef.current.files[i]);
             const newPhoto = await profileAPI.uploadPhoto(photoFormData);
+            console.log(photoFormData.getAll('photo'))
             navigate('/playlists')
             // 
            
