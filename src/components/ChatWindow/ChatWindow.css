@@ -38,7 +38,7 @@
     /* background-color: rgb(35, 35, 35); */
     font-size: 1rem;
     font-weight: 500;
-    margin-bottom: 0;
+    margin-bottom: 1vmin;
     /* margin-left: ; */
 }
 .match-msg>p, .match-msg>small{
