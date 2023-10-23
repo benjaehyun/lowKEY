@@ -45,6 +45,3 @@ Continue to add information to your profile such as a short biography, genres of
 
 
 
-
-icebox: 
-gender prefs, creating playlists for pairs of matches, embedded player and let users select songs, image cropper, more accurate algo, animations, notifications, location, profile edit, refactor for mobile app design  
