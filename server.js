@@ -18,7 +18,7 @@ const io = new Server(server, {
     cors: {
         // origin: "*", 
         // methods: ['GET', 'POST'],
-        origin: "http://localhost:3000"
+        origin: "https://lowkey-08ba0f67b0aa.herokuapp.com/"
     }
 })
 
