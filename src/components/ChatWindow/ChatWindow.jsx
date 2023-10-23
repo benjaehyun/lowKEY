@@ -40,8 +40,8 @@ export default function MatchCard({matchProfile}) {
     }
 
 
-    function handleSubmit() {
-
+    function handleSubmit(e) {
+        e.preventDefault()
         const newMessage = {
             content: message, 
             sender: data.currentProfile.name
@@ -76,10 +76,10 @@ export default function MatchCard({matchProfile}) {
     }
     )}
             </div>
-            <div className='input-div'>
-                <input type="text" onChange={handleChange} value={message}/>
-                <Button onClick={handleSubmit}> send </Button>
-            </div>
+            <form onSubmit={handleSubmit} className='input-div'> 
+                <input type="text" onChange={handleChange} value={message} required/>
+                <Button type='submit'> send </Button>
+            </form>
         </div>
     )
 }
