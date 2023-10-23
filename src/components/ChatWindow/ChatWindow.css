@@ -21,6 +21,8 @@
     padding-top: 0.5em;
     padding-bottom: 0.5em;
     border-radius: .5em;
+    margin-bottom: 1vmin;
+
 }
 .match-msg {
     background-color: rgb(70, 203, 98);
@@ -32,13 +34,14 @@
     padding-top: 0.5em;
     padding-bottom: 0.5em;
     border-radius: .5em;
+    margin-bottom: 1vmin;
+
 }
 
 .user-msg>p, .match-msg>p {
     /* background-color: rgb(35, 35, 35); */
     font-size: 1rem;
     font-weight: 500;
-    margin-bottom: 1vmin;
     /* margin-left: ; */
 }
 .match-msg>p, .match-msg>small{
