@@ -76,7 +76,7 @@ export default function MatchCard({matchProfile}) {
     }
     )}
             </div>
-            <form onSubmit={handleSubmit} className='input-div'> 
+            <form onSubmit={handleSubmit} className='chat-form'> 
                 <input type="text" onChange={handleChange} value={message} required/>
                 <Button type='submit'> send </Button>
             </form>

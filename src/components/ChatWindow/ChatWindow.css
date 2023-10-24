@@ -53,13 +53,19 @@ small {
     background-color: rgb(35, 35, 35);
 }
 
-.input-div{ 
-    margin-top: 1.5vmin;
+.chat-form{ 
+    display: flex; 
+    padding: 1vmin; 
 }
 
-.input-div > input {
+.chat-form > input {
     height: 3em;
     margin-right: 0.5vmax;
     width: 38vmax;
+}
+
+.chat-form > {
+    margin: 0; 
+    width: 5vmax; 
 }
 
