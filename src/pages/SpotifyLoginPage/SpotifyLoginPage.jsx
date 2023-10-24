@@ -14,7 +14,7 @@ export default function SpotifyLoginPage({ setProfile, profile}) {
           async function requestAccessToken() {
             try {
               const profile = await spotifyService.requestAccessToken()
-              console.log(`spotify login profile: ${profile}`)
+              console.log(`spotify login profile:`, profile)
               setProfile(profile)
             } catch(err) {
               console.log(err)

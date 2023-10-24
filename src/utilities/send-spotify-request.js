@@ -9,7 +9,7 @@ export default async function sendSpotifyRequest(url, args = null, method = 'GET
     let apiUrl = url.concat(args || '')
     const res = await fetch(apiUrl, options);
     if (res.ok) return res.json();
-    throw new Error('Bad Request');
+    throw new Error('Bad Request', error.message);
   }
 
 export async function checkSpotifyToken() {
