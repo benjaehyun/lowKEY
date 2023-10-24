@@ -68,7 +68,7 @@ export default function MatchCard({matchProfile}) {
                 :
                 <div className='match-msg'>
                     <p key={idx}>{message.content}</p>
-                    { message.sender ? <small>-{message.sender}</small> : '' }
+                    {/* { message.sender ? <small>-{message.sender}</small> : '' } */}
                 </div>
                 }
             </>
