@@ -64,7 +64,7 @@ small {
     width: 38vmax;
 }
 
-.chat-form > {
+.chat-form > button{
     margin: 0; 
     width: 5vmax; 
 }
