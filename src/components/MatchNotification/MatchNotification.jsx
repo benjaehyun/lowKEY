@@ -1,5 +1,7 @@
 import {useState, useEffect} from 'react'
 import { useNavigate, Link } from 'react-router-dom'
+import { Button } from 'react-bootstrap'
+import "./MatchNotification.css"
 
 export default function MatchNotification({profile, setIsMatched}) {
     const [spotProfile, setSpotProfile] = useState({})
@@ -15,11 +17,11 @@ export default function MatchNotification({profile, setIsMatched}) {
     }
     
     return (
-        <>
+        <div className='match-noti'>
             <h1> You Matched With {profile.name} !  </h1>
-            <button onClick={handleContinue}>Keep Swiping </button>
-            <button onClick={goToMatch}> Go To See Your Matches </button>
+            <Button onClick={handleContinue}>Keep Swiping </Button>
+            <Button onClick={goToMatch}> Go To See Your Matches </Button>
 
-        </>
+        </div>
     )
 }

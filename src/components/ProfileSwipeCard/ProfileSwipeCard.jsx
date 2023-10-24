@@ -1,13 +1,18 @@
 import {useState, useEffect} from 'react'
+import Carousel from 'react-bootstrap/Carousel';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCircleXmark, faHeart } from '@fortawesome/free-solid-svg-icons'
 import * as profilesAPI from "../../utilities/profiles-api"
 import './ProfileSwipeCard.css'
 import MatchNotification from '../MatchNotification/MatchNotification'
 
 export default function ProfileSwipeCard ({profile}) {
-    const [profilesQueue, setProfilesQueue] = useState([])
+    const [profilesQueue, setProfilesQueue] = useState([]) 
     const [activeIdx, setActiveIdx] = useState(0)
     const [isMatched, setIsMatched] = useState(false)
     const [currentMatch, setCurrentMatch] = useState({})
+    const [photoIndex, setPhotoIndex] = useState(0);
+    const [infoIndex, setInfoIndex] = useState(0);
 
     useEffect(function () {
         async function getFirstProfileQueue() {
@@ -32,7 +37,7 @@ export default function ProfileSwipeCard ({profile}) {
         if (profilesQueue[activeIdx].profile.likes.includes(currentProfile._id)) {
             setIsMatched(true)
             setCurrentMatch(profilesQueue[activeIdx].profile)
-            await profilesAPI.sendMatch(profilesQueue[activeIdx].profile._id)
+            const chatRoomId = await profilesAPI.sendMatch(profilesQueue[activeIdx].profile._id)
         }
         if (activeIdx >= 10) {
             getProfileQueue()
@@ -64,35 +69,75 @@ export default function ProfileSwipeCard ({profile}) {
         return returnArr
     }
 
+    const handlePhotoSelect = (selectedIndex) => {
+        setPhotoIndex(selectedIndex);
+      };
+    const handleInfoSelect = (selectedIndex) => {
+        setInfoIndex(selectedIndex);
+      };
+
+    
+
+    const dataList = profilesQueue[activeIdx]?.profile?.photos.map((photo, idx)=> {
+        return (
+          <Carousel.Item interval={3000}>        
+        <img
+          height={'300px'}
+          src={photo}
+          alt="slider image"
+          
+        />
+      </Carousel.Item>
+        )
+      })
+
     return (
         <div>
-            <h1>profile swipe card component</h1>
             { isMatched ? 
             <MatchNotification profile={currentMatch} setIsMatched={setIsMatched} />
             :
             <>
                 {
                     profilesQueue[activeIdx]?.profile ?
-                <div>
-                    <h1>{profilesQueue[activeIdx].profile.name}, {profilesQueue[activeIdx].profile.age}</h1>
-                    <h3>about: {profilesQueue[activeIdx].profile.about}</h3>
-                    <h4>favorite artists: {profilesQueue[activeIdx].profile.artists}</h4>
-                    <h4>favorite genres: {profilesQueue[activeIdx].profile.genres}</h4>
-                    <h4>some songs found on their songlist:&nbsp; </h4>
-                        <div className='found-list'>
-                            {showArr(profilesQueue[activeIdx].playlist.songName)}
+                    <>
+                        <div className='swipe-card'>
+                            <h1>{profilesQueue[activeIdx].profile.name}, {profilesQueue[activeIdx].profile.age}</h1>
+                            
+                            <Carousel activeIndex={photoIndex} onSelect={handlePhotoSelect}>
+                                {dataList}
+                            </Carousel>
+                            <Carousel activeIndex={infoIndex} onSelect={handleInfoSelect}>
+                                    <Carousel.Item interval={10000}> 
+                                        <div className='info-block'>
+                                            <h3>about:</h3> <p>{profilesQueue[activeIdx].profile.about}</p>
+                                            <h4>favorite artists:</h4> {profilesQueue[activeIdx].profile.artists}
+                                            <h4>favorite genres:</h4> {profilesQueue[activeIdx].profile.genres}
+                                        </div>
+                                    </Carousel.Item>
+                                    <Carousel.Item interval={10000}> 
+                                        <div className='info-block'>
+                                            <h4 className='found-label'>some songs from their songlist:&nbsp; </h4>
+                                            <div className='found-list'>
+                                                {showArr(profilesQueue[activeIdx].playlist.songName)}
+                                            </div>
+                                            <h4 className='found-label'>some artists found on their songlist:&nbsp;</h4>
+                                            <div className='found-list'>
+                                                {showArr(profilesQueue[activeIdx].playlist.artist)}
+                                            </div>
+                                            <h4 className='found-label'>some albums found on their songlist:&nbsp;</h4>
+                                            <div className='found-list'>
+                                                {showArr(profilesQueue[activeIdx].playlist.album)}
+                                            </div>
+                                        </div>
+                                    </Carousel.Item>
+                                
+                                </Carousel>
+                            <div className='buttons-div'>
+                                <FontAwesomeIcon className='fa-deny' icon={faCircleXmark} size="xl" style={{color: "#ff0000",}} onClick={handleDislike} />
+                                <FontAwesomeIcon className='fa-like' icon={faHeart} size="xl" style={{color: "#1cd255",}} onClick={handleLike}/>
+                            </div>
                         </div>
-                    <h4>some artists found on their songlist:&nbsp;</h4>
-                        <div className='found-list'>
-                            {showArr(profilesQueue[activeIdx].playlist.artist)}
-                        </div>
-                    <h4>some albums found on their songlist:&nbsp;</h4>
-                        <div className='found-list'>
-                            {showArr(profilesQueue[activeIdx].playlist.album)}
-                        </div>
-                    <button onClick={handleLike}> Like </button>
-                    <button onClick={handleDislike}> Dislike </button>
-                </div>
+                    </>
                 : 
                 'loading profiles'
                 }

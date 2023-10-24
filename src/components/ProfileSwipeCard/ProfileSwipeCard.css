@@ -3,3 +3,33 @@
     display: flex;
     justify-content: center;
 }
+
+.carousel-indicators {
+    margin-bottom: 0 !important;
+}
+
+.swipecard-info {
+    display: flex;
+    margin: auto;
+    justify-content: center;
+}
+
+.found-label {
+    margin-bottom: 0;
+}
+
+.fa-deny, .fa-like{
+    font-size: 10vh;
+    margin-left: 10vw;
+    margin-right: 10vw;
+    margin-top: 2vh;
+}
+.swipe-card {
+    border: 5px solid white;
+    border-radius: 1.5em;
+    padding: 2vmin;
+}
+
+.info-block {
+    height: 25vmin;
+}

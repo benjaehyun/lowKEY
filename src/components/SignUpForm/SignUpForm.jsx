@@ -1,6 +1,7 @@
 import { useState } from 'react'; 
 import { useNavigate } from 'react-router-dom';
 import {signUp} from '../../utilities/users-service'
+import Button from 'react-bootstrap/Button';
 
 export default function SignUpForm ({setUser}) {
     const [formData, setFormData] = useState({
@@ -44,7 +45,7 @@ export default function SignUpForm ({setUser}) {
                     <input type="password" name="password" value={formData.password} onChange={handleChange} required />
                     <label>Confirm</label>
                     <input type="password" name="confirm" value={formData.confirm} onChange={handleChange} required />
-                    <button type="submit" disabled={disable}>SIGN UP</button>
+                    <Button variant='primary' size='lg' type="submit" disabled={disable}>SIGN UP</Button>
                 </form>
             </div>
             <p className="error-message">&nbsp;{error}</p>

@@ -2,9 +2,11 @@ import { useEffect, useState } from "react"
 import { Link, useNavigate} from "react-router-dom"
 import * as spotifyAPI from "../../utilities/spotify-api"
 import * as playlistAPI from "../../utilities/playlist-api"
+import { Card, Button } from "react-bootstrap"
+import "./PlaylistsPage.css"
 
 
-export default function TopSongs({ }) {
+export default function TopSongs() {
   const [apiData, setApiData] = useState(null)
 
 
@@ -38,19 +40,22 @@ export default function TopSongs({ }) {
 
   let playlists = apiData?.items?.map(function (item, idx) { 
     if (item.tracks.total >= 20) return (
-    <div key={idx} onClick={()=>selectPlaylist(item.id)} className="playlist-div">
-      <h2>Title: {item.name} </h2>
-      <h3>ID: {item.id} </h3>
-    </div>
+      <Card className="m-4"> 
+        <div key={idx} onClick={()=>selectPlaylist(item.id)} className="playlist-div">
+          <Card.Body>
+              <h2 className="playlist-title">Title: {item.name} </h2>
+            </Card.Body>
+        </div>
+      </Card>
     ) 
 })
 playlists = playlists?.filter(x=>x)
 
   return (
-      <>
+    <main className="main-content">
           <h1> Pick One of Your Playlists or Use The Top 20 Songs From Your Spotify Profile</h1>
-          <button onClick={selectTopSongs}>Use My Top 20 Songs</button>
+          <Button onClick={selectTopSongs}>Use My Top 20 Songs</Button>
           <div>{apiData ? <> {playlists} </>   : "Playlists Not Retrieved" }</div>
-      </>
+      </main>
   )
 }

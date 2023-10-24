@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import * as spotifyAPI from "../../utilities/spotify-api"
 import * as spotifyRequest from "../../utilities/send-spotify-request"
+import { Card, CardBody } from "react-bootstrap"
 
 
 export default function TopSongs({ setProfile, profile}) {
@@ -31,12 +32,17 @@ export default function TopSongs({ setProfile, profile}) {
       // })
     })
     const songs = apiData?.items?.map((item, idx) => 
+    <Card>
+
     <div key={idx}>
-      <h2>Title: {item.name} </h2>
-      <h3>Album: {item.album.name} </h3>
-      Artists: {artistArr[idx].join(' ')}
-      <p>ID: {item.id} </p>
-    </div>)
+      <CardBody>
+        <h2>Title: {item.name} </h2>
+        <h3>Album: {item.album.name} </h3>
+        <h3> Artists: {artistArr[idx].join(' ')} </h3>
+      </CardBody>
+    </div>
+    </Card>
+    )
   // }
 
   async function checkFunction () {
@@ -45,10 +51,10 @@ export default function TopSongs({ setProfile, profile}) {
   }
 
   return (
-      <>
-          <button onClick={checkFunction}>Check Spotify Token</button>
+    <main className="main-content">
+          {/* <button onClick={checkFunction}>Check Spotify Token</button> */}
           <h1> Your Top 40 Songs </h1>
           <div>{apiData ? <> {songs} </>   : "Top Songs Not Retrieved" }</div>
-      </>
+      </main>
   )
 }

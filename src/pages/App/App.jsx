@@ -12,12 +12,14 @@ import ProfileFormPage from "../ProfileFormPage/ProfileFormPage";
 import ProfileShowPage from "../ProfileShowPage/ProfileShowPage";
 import SongFeaturesPage from "../SongFeaturesPage/SongFeaturesPage";
 import MatchesPage from "../MatchesPage/MatchesPage";
+import PhotoUploadPage from "../PhotoUploadPage/PhotoUploadPage"
 
 
 export default function App() {
   const [user, setUser] = useState(getUser()) //the initial value for the state is the return from the getUser function
   const [profile, setProfile] = useState({})
   return (
+    <>
     <main className="App">
       {user ? 
         <>
@@ -27,16 +29,19 @@ export default function App() {
               <Route path="/playlists" element={ <PlaylistsPage /> } />
               <Route path="/spotifylogin" element={ <SpotifyLoginPage /> } />
               <Route path="/profile/create" element={ <ProfileFormPage /> } />
-              <Route path="/profile" element={ <ProfileShowPage /> } />
               <Route path="/matches" element={ <MatchesPage /> } />
+              <Route path="/profile" element={ <ProfileShowPage /> } />
               <Route path="/top" element={ <TopSongs /> } />
               <Route path="/features" element={ <SongFeaturesPage /> } />
               <Route path='/*' element={<Navigate to='/' />} />
             </Routes>
         </>
         : 
-        <AuthPage setUser={setUser}/>
+        <main> 
+          <AuthPage setUser={setUser}/>
+        </main>
       }
     </main>
+    </>
   );
 }

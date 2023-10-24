@@ -1,5 +1,7 @@
 import { useState } from 'react'; 
 import * as usersServices from '../../utilities/users-service'
+import { Button } from 'react-bootstrap';
+import "./LoginForm.css"
 
 export default function LogInForm ({setUser}) {
     const [credentials, setCredentials] = useState({
@@ -32,7 +34,7 @@ export default function LogInForm ({setUser}) {
             <input type="text" name="email" value={credentials.email} onChange={handleChange} required />
             <label>Password</label>
             <input type="password" name="password" value={credentials.password} onChange={handleChange} required />
-            <button type="submit">LOG IN</button>
+            <Button variant='primary' size='lg' type="submit" >Log In</Button>
           </form>
         </div>
         <p className="error-message">&nbsp;{error}</p>

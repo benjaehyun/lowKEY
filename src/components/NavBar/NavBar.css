@@ -1,0 +1,33 @@
+nav {
+    display: flex; 
+    flex-direction: column;
+    margin-left: 0;
+    align-items: flex-start;
+    width: 15vmax;
+    min-width: 15vmax;
+    height: 100vmin;
+    font-size: 18px;
+    background-color: rgb(35, 35, 35);
+}
+
+nav > a, nav>h5 {
+    margin-left: 4.8vmax;
+    background-color: rgb(35, 35, 35);
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 600;
+    color: #E2D9D1;
+}
+
+nav>h5 {
+    margin-bottom: 2vmin;
+}
+
+nav>a:hover {
+    color: #ffffff;
+}
+
+a>img {
+    margin-left: -1.5vmax;
+    background-color: rgb(35, 35, 35);
+}
