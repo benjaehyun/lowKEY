@@ -1,7 +1,5 @@
 import {useState, useEffect} from 'react'
 import Carousel from 'react-bootstrap/Carousel';
-import { Card } from 'react-bootstrap';
-import CarouselItem from 'react-bootstrap/CarouselItem'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleXmark, faHeart } from '@fortawesome/free-solid-svg-icons'
 import * as profilesAPI from "../../utilities/profiles-api"

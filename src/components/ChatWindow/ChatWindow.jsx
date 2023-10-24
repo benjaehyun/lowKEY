@@ -9,7 +9,7 @@ export default function MatchCard({matchProfile}) {
     const [data, setData] = useState({})
     const [message, setMessage] = useState([])
     const [chatroomState, setChatroomState] = useState([])
-    const [listening, setListening] = useState(0)
+
     
 
 
