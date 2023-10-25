@@ -52,6 +52,7 @@ function calculateQueue(playlistArr, myPlaylist) {
         })
     } )
     scoredPlaylistArr.sort((a,b) => a.score - b.score)
+    console.log('calculationhelper playlistArr', scoredPlaylistArr)
     return scoredPlaylistArr
 }
 

@@ -18,10 +18,10 @@ export default function ProfileSwipeCard ({profile}) {
         async function getFirstProfileQueue() {
             const apiProfList = await profilesAPI.getQueue()
             setProfilesQueue(apiProfList)
-            console.log("profilesqueue", profilesQueue)
             setActiveIdx(0)
         }
         getFirstProfileQueue()
+        console.log("profilesqueue", profilesQueue)
     },[])
 
     async function getProfileQueue() {

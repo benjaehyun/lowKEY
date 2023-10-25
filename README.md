@@ -21,7 +21,7 @@ Technologies Used: JavaScript, HTML, CSS, Node.js, Express.js, MongoDB, Mongoose
 ## Getting Started:
 https://lowkey-08ba0f67b0aa.herokuapp.com/
 
-Login or Create an account with lowKEY to begin matching! Note: you must have a valid Spotify account to use this app. 
+Login or Create an account with lowKEY to begin matching! Note: Due to the nature of Spotify's API development restrictions, I have to manually add your Spotify profile to the application's whitelife. Please reach out to me if you would like to demo this app's functionality yourself. (you must have a valid Spotify account to use this app) 
 
 Once logged in: 
 Continue to add information to your profile such as a short biography, genres of music that you enjoy, and artists that you like. You will also have to upload between 1-6 photos of yourself for your profile. Then you will be taken to a page that gives an option to either choose from valid playlists in your library or the top 20 songs that you've listened to in the past 6 months. Then you begin swiping! Once you have a match, navigate to the matches page and select the particular match that you want to start interacting with on the left side under the navigation bar. 
