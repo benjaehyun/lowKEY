@@ -18,7 +18,7 @@ const io = new Server(server, {
     cors: {
         // origin: "*", 
         // methods: ['GET', 'POST'],
-        origin: "https://lowkey-08ba0f67b0aa.herokuapp.com/"
+        origin: "http://localhost:3000"
     }
 })
 
@@ -79,7 +79,3 @@ const port = process.env.PORT || 3001;
 server.listen(port, function() {
 console.log(`Express app running on port ${port}`)
 });
-
-http.listen(port, function () {
-    console.log(`Listening on port ${port}`)
-})

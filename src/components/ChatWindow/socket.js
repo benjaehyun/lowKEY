@@ -1,7 +1,7 @@
 import io  from 'socket.io-client'
 
 
-const socket = io.connect("https://lowkey-08ba0f67b0aa.herokuapp.com/") 
+const socket = io.connect("http://localhost:3001") 
 let setChatroomState
 
 export function joinRoom(chatroomID) {

@@ -9,7 +9,7 @@ export default function MatchCard({matchProfile}) {
     const [data, setData] = useState({})
     const [message, setMessage] = useState([])
     const [chatroomState, setChatroomState] = useState([])
-
+    const [listening, setListening] = useState(0)
     
 
 
@@ -40,8 +40,8 @@ export default function MatchCard({matchProfile}) {
     }
 
 
-    function handleSubmit(e) {
-        e.preventDefault()
+    function handleSubmit() {
+
         const newMessage = {
             content: message, 
             sender: data.currentProfile.name
@@ -76,10 +76,10 @@ export default function MatchCard({matchProfile}) {
     }
     )}
             </div>
-            <form onSubmit={handleSubmit} className='input-div'> 
-                <input type="text" onChange={handleChange} value={message} required/>
-                <Button type='submit'> send </Button>
-            </form>
+            <div className='input-div'>
+                <input type="text" onChange={handleChange} value={message}/>
+                <Button onClick={handleSubmit}> send </Button>
+            </div>
         </div>
     )
 }
