@@ -31,14 +31,14 @@ Continue to add information to your profile such as a short biography, genres of
 * If user abandon's profile creation, the account will be created in database with partial information and will throw errors if you try to come back to it. 
 
 #### Additional Features 
-* Both selecting your own gender identification and gender preferences.
+* Selecting user's gender identification and gender preferences.
 * Image Cropper 
-* An option to use the SpotifyAPI to build a collaborative playlist that is a mashup of the two users of a given match.
-* Allow users to select 1-2 songs that can then be rendered on their profile swipe card in an embedded player so that users can listen to music that is representative of their prospective like while still in the app. 
+* A feature to use the SpotifyAPI to build a collaborative playlist that is a mashup of the two users of a given match.
+* Allow users to select 1-2 songs that can then be rendered on their profile swipe card in an embedded player so that users can listen to music that is representative of the displayed profile while still in the app. 
 * Adjust the algorithm to take into account overlapping songs/albums/artists without skewing the overall score too much. (naturally, a pair of users that share a song will also share the album and artist for that song)
 * Adjust the calculations module to normalize values that have high variance but are also several multitudes smaller than the other comparative values. 
 * Notifications for new messages as well as animations that indicate that the other user is currently typing. 
-* Swiping gesture for the card as well as animation once for likes/dislikes. 
+* Swiping gesture for the card as well as animations for likes/dislikes. 
 * Allow users to set their location and confine the list of profiles that they are served to a given radius within that location. 
 * Profile edit functionality 
 * Refactor for mobile app design 
