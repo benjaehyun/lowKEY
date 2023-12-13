@@ -3,10 +3,6 @@ const { S3Client, PutObjectCommand } = require('@aws-sdk/client-s3')
 // Ensure that the .env contains the following keys
 const {S3_REGION, S3_BUCKET, S3_BASE_URL} = process.env;
 // Examples:
-// AWS_ACCESS_KEY_ID=AKIEZKKS2Z76VK45CAEK
-// AWS_SECRET_ACCESS_KEY=Pgi7L0f6ODIadV0S2IiL8AU3frLvcUpNFIpH73GW
-// S3_REGION=us-west-1
-// S3_BUCKET=unique-bucket-name-for-photos
 // S3_BASE_URL=https://s3-us-west-1.amazonaws.com/
 // Note: The S3_BASE_URL specifies the endpoint used to download the file
 // and should be stored in the MongoDB document.  The S3_BASE_URL has the S#_BUCKET and the file's unique
@@ -27,7 +23,9 @@ module.exports = async function(file) {
   // Send the file to s3
   try {
     await s3Client.send(new PutObjectCommand(s3Params));
-  } catch (err) {console.log(err)}
+  } catch (err) {
+    console.log(err)
+  }
   // Return the endpoint to download the file
   return `${S3_BASE_URL}${S3_BUCKET}/${s3Params.Key}`;
 };
